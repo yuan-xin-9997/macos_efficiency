@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.yourname.mountsmb</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/<YOUR_USERNAME>/Library/Scripts/mount_smb.sh</string>
+    </array>
+
+    <!-- 登录时运行 -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- 网络配置变化时触发（覆盖唤醒场景） -->
+    <key>WatchPaths</key>
+    <array>
+        <string>/etc/resolv.conf</string>
+        <string>/Library/Preferences/SystemConfiguration/preferences.plist</string>
+    </array>
+
+    <!-- 每60秒兜底检查 -->
+    <key>StartInterval</key>
+    <integer>60</integer>
+
+    <!-- 30秒内不重复触发 -->
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+
+    <!-- 日志 -->
+    <key>StandardOutPath</key>
+    <string>/Users/<YOUR_USERNAME>/Library/Logs/mount_smb.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/<YOUR_USERNAME>/Library/Logs/mount_smb.log</string>
+</dict>
+</plist>
