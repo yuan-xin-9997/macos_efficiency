@@ -159,8 +159,14 @@ launchctl list | grep mountsmb
 # 手动触发
 launchctl kickstart gui/$(id -u)/com.yourname.mountsmb
 
-# 停止守护
+# 暂停服务（停止守护并从当前用户的 launchd 中卸载；不会删除配置文件）
 launchctl bootout gui/$(id -u)/com.yourname.mountsmb
+
+# 恢复服务（重新加载 launchd 配置）
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.yourname.mountsmb.plist
+
+# 恢复后立即触发一次挂载（可选）
+launchctl kickstart gui/$(id -u)/com.yourname.mountsmb
 
 # 查看日志
 tail -f ~/Library/Logs/mount_smb.log
